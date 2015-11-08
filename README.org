@@ -1,0 +1,8 @@
+* What is this?
+
+A layer that contains Phil Piwonka's spacemacs preferences
+
+* How to use
+Clone into ~/.emacs.d/private/piwonka-spacemacs
+
+Add 'piwonka-spacemacs' to dotspacemacs-configuration-layers
