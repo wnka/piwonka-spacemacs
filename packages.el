@@ -12,6 +12,4 @@
     :config
     (progn
       (setq org-journal-dir "~/Documents/journal/")
-
-
     )))

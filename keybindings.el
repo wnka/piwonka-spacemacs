@@ -2,6 +2,10 @@
 (global-set-key "\C-x\C-m" 'helm-M-x)
 (global-set-key "\C-xm" 'helm-M-x)
 
+;; Make jumping around lists/parens easy
+(global-set-key "\M-n" 'forward-list)
+(global-set-key "\M-p" 'backward-list)
+
 ;; Display continuous lines
 (setq-default truncate-lines nil)
 ;; truncate even even when screen is split into multiple windows
@@ -34,3 +38,22 @@
 (defalias 'kr 'helm-show-kill-ring)
 
 (setq confirm-kill-emacs 'y-or-n-p)
+
+(setq-default
+ ;; js2-mode
+ js2-basic-offset 2
+ ;; web-mode
+ css-indent-offset 2
+ web-mode-markup-indent-offset 2
+ web-mode-css-indent-offset 2
+ web-mode-code-indent-offset 2
+ web-mode-attr-indent-offset 2)
+
+(with-eval-after-load 'web-mode
+  (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+
+(with-eval-after-load 'flycheck
+  (setq flycheck-display-errors-function
+        #'flycheck-display-error-messages))
