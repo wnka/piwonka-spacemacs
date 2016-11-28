@@ -57,3 +57,5 @@
 (with-eval-after-load 'flycheck
   (setq flycheck-display-errors-function
         #'flycheck-display-error-messages))
+
+(add-to-list 'auto-mode-alist '("\\.template$" . json-mode))
