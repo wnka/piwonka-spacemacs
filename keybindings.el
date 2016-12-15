@@ -12,8 +12,48 @@
 (setq-default truncate-partial-width-windows nil)
 
 ;; ORG
-(setq wnka/org-path "~/Dropbox/orggit/")
+(setq wnka/org-path "~/Documents/org/")
 (setq wnka/org-notes-path "~/Documents/notes/")
+(setq org-agenda-files (mapcar #'(lambda (orgfile) (concat wnka/org-path orgfile)) 
+                               (list 
+                                "work.org"
+                                "work.org_archive"
+                                )))
+
+(setq org-agenda-custom-commands
+      '(("n" todo "NEXT") ; Todo items that are marked "NEXT"
+        ("N" todo-tree "NEXT") ; Todo items that are marked "NEXT"
+        ))
+
+(setq org-agenda-sorting-strategy '(time-up priority-down category-up))
+(setq org-agenda-skip-deadline-if-done t)
+(setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-window-setup 'current-window)
+(setq org-deadline-warning-days 7)
+
+(setq org-use-property-inheritance t)
+
+(setq org-export-section-number-format '((("1" "."))
+                                         . " - "))
+(setq org-capture-templates
+      '(
+        ("t" "Work Todo" entry (file+headline (eval (concat wnka/org-path "work.org")) "Inbox")
+         "* TODO %?\n  %i\n")
+        ("d" "Work Todo Today" entry (file+headline (eval (concat wnka/org-path "work.org")) "Inbox")
+         "* TODO %?\n  SCHEDULED: %t")
+        )
+      )
+(setq org-log-done 'time)
+(setq org-refile-use-outline-path nil)
+(setq org-agenda-start-on-weekday nil)
+(setq org-refile-targets '(
+                           ("work.org" . (:level . 1)) 
+                           ))
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "CANCELLED(c)")))
+(setq org-use-fast-todo-selection t)
+(setq org-tags-column 90)
+
 
 ;; Various Preferences
 (setq kill-whole-line t)
